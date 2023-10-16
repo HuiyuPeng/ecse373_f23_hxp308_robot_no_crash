@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find stdr_launchers)/launch/server_with_map_and_gui_plus_robot.launch" ></include>
+    <include file="$(find robot_no_crash)/launch/robot_supervisor.launch"></include>
+    <param name="wall_dist" value="0.5" type="double" />
+</launch>
