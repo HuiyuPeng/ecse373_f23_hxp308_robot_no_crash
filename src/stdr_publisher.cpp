@@ -27,15 +27,17 @@ void chatterCallback(const geometry_msgs::Twist::ConstPtr &msg)
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr &laserData)
 {
     // Fixed indices for a 180-degree view in front
-    int min_index = 45;
-    int max_index = 225;
-    // int range_size = laser_data->ranges.size();
-    // int min_index = range_size * 45 / 270;
-    // int max_index = range_size * 225 / 270;
-    // ROS_INFO("what is min index %d", min_index);
-    // ROS_INFO("what is max index %d", max_index);
+    // int min_index = 45;
+    // int max_index = 225;
+    ROS_INFO("1");
+    int range_size = laserData->ranges.size();
+    ROS_INFO("range size %d", range_size);
+    int min_index = int(range_size * 45 / 270.0);
+    int max_index = int(range_size * 225 / 270.0);
+    ROS_INFO("what is min index %d", min_index);
+    ROS_INFO("what is max index %d", max_index);
     // ROS_INFO("what is 450 value %f", laserData->ranges[450]);
-    for (int i = 150; i <= 450; ++i)
+    for (int i = min_index; i <= max_index; ++i)
     {
         if (laserData->ranges[i] < wall_dist)
         {
